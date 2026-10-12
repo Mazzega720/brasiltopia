@@ -135,3 +135,30 @@ async function carregarChangelogGitHub() {
 }
 
 carregarChangelogGitHub();
+
+const btnHamburguer = document.querySelector('.btn-hamburguer');
+const menuNavLinks = document.querySelector('.nav-links');
+
+if (btnHamburguer && menuNavLinks) {
+  btnHamburguer.addEventListener('click', () => {
+    btnHamburguer.classList.toggle('ativo');
+    menuNavLinks.classList.toggle('aberto');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach((link) => {
+    link.addEventListener('click', () => {
+      btnHamburguer.classList.remove('ativo');
+      menuNavLinks.classList.remove('aberto');
+    });
+  });
+}
+
+const bgFundo = document.getElementById('bg-fundo');
+if (bgFundo) {
+  window.addEventListener('scroll', () => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progresso = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+    const deslocamentoVh = (progresso - 0.5) * 16; 
+    bgFundo.style.transform = `translate3d(0, ${-deslocamentoVh}vh, 0)`;
+  });
+}
